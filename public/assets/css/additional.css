@@ -1,0 +1,19 @@
+.btn.btn-clean:hover:not(.btn-text):not(:disabled):not(.disabled), 
+.btn.btn-clean:focus:not(.btn-text), 
+.btn.btn-clean.focus:not(.btn-text) {
+    border-radius: 50%;
+}
+
+.btn.btn-clean:not(:disabled):not(.disabled):active:not(.btn-text), 
+.btn.btn-clean:not(:disabled):not(.disabled).active,
+.show > .btn.btn-clean.dropdown-toggle,
+.show .btn.btn-clean.btn-dropdown {
+    color: #00785D !important;
+    background-color: rgb(0, 120, 93, 0.1);
+    border-color: transparent; 
+    border-radius: 50%;
+}
+
+.aside {
+    background-color: #fff;
+}
