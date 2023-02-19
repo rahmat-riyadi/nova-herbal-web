@@ -17,20 +17,17 @@ class UserController extends Controller
 
     public function index(Request $request){
 
-        if($request->ajax()){
-            $data = User::all();
-            return DataTables::of($data)->make(true);
-        }
+        $admin = User::all();
 
-        return view($this->folderName.'.index');
+        return view('admin.'.$this->folderName.'.index', compact('admin'));
     }
 
     public function create(){
-        return view($this->folderName.'.form');
+        return view('admin.'.$this->folderName.'.form');
     }
 
     public function show(User $user){
-        return view($this->folderName.'.form', compact('user'));
+        return view('admin.'.$this->folderName.'.form', compact('user'));
     }
 
 

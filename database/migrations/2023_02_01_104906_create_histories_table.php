@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('medicine');
             $table->string('capsul_color');
             $table->string('price', 10, 10);
-            $table->string('status');
+            $table->string('status')->default('Menunggu');
             $table->timestamps();
         });
     }

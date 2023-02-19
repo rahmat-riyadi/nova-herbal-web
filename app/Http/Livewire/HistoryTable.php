@@ -8,7 +8,10 @@ use Livewire\Component;
 class HistoryTable extends Component
 {
 
-    protected $listeners = ['refreshHistoryTable' => '$refresh'];
+    protected $listeners = [
+        'refreshHistoryTable' => '$refresh', 
+        'changeStatus' => 'changeStatus'
+    ];
 
     public $patients_id;
 
@@ -16,9 +19,9 @@ class HistoryTable extends Component
     {
         return view('livewire.history-table', [
             'histories' => History::where('patients_id', $this->patients_id)
-                            ->orderBy('coming_time', 'DESC')
-                            ->orderBy('status', 'ASC')
-                            ->get()
+            ->orderBy('created_at', 'DESC')
+            ->orderBy('status', 'ASC')
+            ->get()
         ]);
     }
 
@@ -33,4 +36,5 @@ class HistoryTable extends Component
         $this->emit('refreshHistoryTable');        
 
     }
+
 }

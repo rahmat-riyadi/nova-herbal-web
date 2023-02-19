@@ -14,7 +14,7 @@
         <ul class="nav flex-column">
             <!--begin::Item-->
             <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Latest Projects">
-                <a href="/admin" class="nav-link btn btn-icon btn-clean btn-text-white btn-lg @if(Route::current()->getName() == 'index') active @endif">
+                <a href="/admin" class="nav-link btn btn-icon btn-clean btn-text-white btn-lg @if(Route::current()->getName() == 'dashboard') active @endif">
                     {{-- <i class="flaticon2-protection icon-lg"></i> --}}
                     <img width="30px" src="{{ asset('assets/icons/dashboard.svg') }}" alt="">
                 </a>
@@ -27,11 +27,12 @@
                 </a>
             </li>
 
-            {{-- <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Latest Projects">
-                <a href="/admin" class="nav-link btn btn-icon btn-clean btn-text-white btn-lg @if(Str::contains(Route::current()->uri, 'patient')) active @endif">
-                    <img width="30px" src="{{ asset('assets/icons/patient.svg') }}" alt="">
+            <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Data Admin">
+                <a href="/admin/admin" class="nav-link btn btn-icon btn-clean btn-text-primary btn-lg @if(Route::current()->getName() == 'admin') active @endif">
+                    <i class="fas text-primary fa-user-shield icon-xl"></i>
                 </a>
-            </li> --}}
+            </li>
+
             <!--end::Item-->
         </ul>
         <!--end::Nav-->

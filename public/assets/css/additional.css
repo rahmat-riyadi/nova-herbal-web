@@ -17,3 +17,48 @@
 .aside {
     background-color: #fff;
 }
+
+/* ============== Pagination ============== */
+
+.pagination-comp {
+    display: flex;
+    column-gap: 10px;
+}
+
+.pagination-item {
+    list-style-type: none;
+}
+
+.pagination-link:hover,
+.pagination-link {
+    display: block;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #121212;
+    border-radius: 5px;
+}
+
+.pagination-link.active {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: #00785D;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination-link.icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: #F4F6F8;
+    /* color: #fff; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

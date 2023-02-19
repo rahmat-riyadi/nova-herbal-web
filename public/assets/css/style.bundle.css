@@ -36931,7 +36931,7 @@ button {
 
 .btn.btn-light-primary {
   color: #00785D;
-  background-color: #EEE5FF;
+  background-color: rgba(0, 120, 94, .1);
   border-color: transparent; }
   .btn.btn-light-primary i {
     color: #00785D; }
@@ -37002,7 +37002,7 @@ button {
 
 .btn.btn-transparent-primary {
   color: #00785D;
-  background-color: rgba(137, 80, 252, 0.1);
+  background-color: rgba(0, 120, 94, 0.1);
   border-color: transparent; }
   .btn.btn-transparent-primary i {
     color: #00785D; }
