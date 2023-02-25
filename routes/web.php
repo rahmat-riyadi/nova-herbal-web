@@ -46,6 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
             Route::get('/create', 'create')->name('createPatient');
             Route::get('/show/{patients}', 'show');
             Route::post('/', 'store')->name('storePatient');
+            Route::post('/delete/{patients}', 'delete');
             
             Route::post('/create/medicine/{patients}', 'createMedicine');
             Route::post('/update/medicine/{patients}/{history}', 'updateMedicine');
@@ -58,6 +59,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
             Route::post('/create/disease-history/{patients}', 'createDiseaseHistory');
             Route::post('/update/disease-history/{patients}/{disease}', 'updateDiseaseHistory');
             Route::post('/delete/disease-history/{patients}/{disease}', 'deleteDiseaseHistory');
+
+            Route::post('/create/note/{patients}', 'createNote');
+            Route::post('/update/note/{patients}/{note}', 'updateNote');
+            Route::post('/delete/note/{patients}/{note}', 'deleteNote');
+
         });
     });
 });

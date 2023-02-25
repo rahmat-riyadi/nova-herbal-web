@@ -129,7 +129,7 @@
     </div>
 
     <!-- Testimoni -->
-    <div class="container-fluid testimoni py-5" id="testimoni">
+    {{-- <div class="container-fluid testimoni py-5" id="testimoni">
         <h1 class="text-center mb-5">Testimoni</h1>
         <div class="carousel-container">
             @for ($i = 1; $i < 5; $i++)
@@ -151,6 +151,66 @@
                 </div>
             </div>
             @endfor
+        </div>
+    </div> --}}
+
+    <div class="container testimoni py-5" id="testimoni">
+        <h1 class="text-center mb-5">Testimoni</h1>
+        <div class="row">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="card m-auto text-light">
+                            <div class="card-body d-flex p-5">
+                                <div class="info w-100 d-flex flex-column justify-content-between">
+                                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit assumenda odio veritatis expedita itaque magnam, iste perferendis optio eaque, ratione reiciendis officiis. Sunt ducimus quidem inventore tenetur aspernatur facilis ipsam.</p>
+                                    <div class="name">
+                                        <p class="text-warning mb-0">Syarwan Hanifah</p>
+                                        <p>Kelapa Dinas</p>
+                                    </div>
+                                </div>
+                                <img src="{{ asset('assets/icons/user.jpg') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card m-auto text-light">
+                            <div class="card-body d-flex p-5 justify-content-center">
+                                <div class="info w-100 d-flex flex-column justify-content-between">
+                                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit assumenda odio veritatis expedita itaque magnam, iste perferendis optio eaque, ratione reiciendis officiis. Sunt ducimus quidem inventore tenetur aspernatur facilis ipsam.</p>
+                                    <div class="name">
+                                        <p class="text-warning mb-0">Syarwan Hanifah</p>
+                                        <p>Kelapa Dinas</p>
+                                    </div>
+                                </div>
+                                <img src="{{ asset('assets/icons/user.jpg') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="card m-auto text-light">
+                            <div class="card-body d-flex p-5">
+                                <div class="info w-100 d-flex flex-column justify-content-between">
+                                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit assumenda odio veritatis expedita itaque magnam, iste perferendis optio eaque, ratione reiciendis officiis. Sunt ducimus quidem inventore tenetur aspernatur facilis ipsam.</p>
+                                    <div class="name">
+                                        <p class="text-warning mb-0">Syarwan Hanifah</p>
+                                        <p>Kelapa Dinas</p>
+                                    </div>
+                                </div>
+                                <img src="{{ asset('assets/icons/user.jpg') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls"
+                    data-slide="prev">
+                    <i class="bi bi-arrow-left-circle-fill text-warning" style="font-size: 1.8em;"></i>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#carouselExampleControls"
+                    data-slide="next">
+                    <i class="bi bi-arrow-right-circle-fill text-warning" style="font-size: 1.8em;"></i>
+                </button>
+            </div>
         </div>
     </div>
 

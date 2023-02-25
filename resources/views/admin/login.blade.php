@@ -35,8 +35,8 @@
 						<div class="d-flex flex-column align-items-center justify-content-center">
                             <img src="{{ asset('assets/icons/rounded-logo.svg') }}" width="70px" alt="">
 							<h3 class="display-4 font-weight-bold my-7 text-white" style="color: #FECA37 !important;">Selamat Datang</h3>
-							<p class="font-weight-bold font-size-lg text-white text-center opacity-80">The ultimate Bootstrap, Angular 8, React &amp; VueJS admin theme
-							<br />framework for next generation web apps.</p>
+							<p class="font-weight-bold font-size-lg text-white text-center opacity-80">Lorem ipsum, dolor sit amet consectetur adipisicing..
+							<br />Lorem ipsum dolor sit amet.</p>
 						</div>
 					</div>
 					<!--end::Content body-->

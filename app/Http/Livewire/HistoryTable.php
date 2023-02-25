@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\PatientEvent;
 use App\Models\History;
 use Livewire\Component;
 
@@ -9,7 +10,7 @@ class HistoryTable extends Component
 {
 
     protected $listeners = [
-        'refreshHistoryTable' => '$refresh', 
+        'refresh' => '$refresh', 
         'changeStatus' => 'changeStatus'
     ];
 
@@ -32,8 +33,10 @@ class HistoryTable extends Component
         } catch (\Exception $e){
             dd($e);
         }
-        $this->emit('refreshCurrentPatient');        
-        $this->emit('refreshHistoryTable');        
+
+        $this->emitTo('current-patient-table', 'refresh');        
+        $this->emit('refresh');        
+        event(new PatientEvent());
 
     }
 

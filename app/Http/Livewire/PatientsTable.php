@@ -11,7 +11,10 @@ class PatientsTable extends Component
 
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    protected $listeners = ['searchEvent' => 'setKeyword'];
+    protected $listeners = [
+        'searchEvent' => 'setKeyword',
+        'refresh' => '$refresh'
+    ];
 
     public $keyword = '';
 
@@ -19,9 +22,9 @@ class PatientsTable extends Component
     {
         return view('livewire.patients-table', [
             'patients' => Patients::where('name', 'like', '%'. $this->keyword. '%' )
-                                    ->orWhere('id_patient', 'like', '%'. $this->keyword. '%')
-                                    ->orWhere('nik', 'like', '%'. $this->keyword. '%')
-                                    ->paginate(10)
+            ->orWhere('id_patient', 'like', '%'. $this->keyword. '%')
+            ->orWhere('nik', 'like', '%'. $this->keyword. '%')
+            ->paginate(10)
         ]);
     }
 

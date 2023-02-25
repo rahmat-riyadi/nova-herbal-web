@@ -31,7 +31,7 @@
                         </td>
                         <td class="pr-0 text-right">
                             <a href="/admin/patient/show/{{ $patient->id }}" class="btn btn-light btn-text-success btn-hover-text-success font-weight-bold mr-2">Lihat</a>
-                            <a href="#" class="btn btn-light btn-text-danger btn-hover-text-danger font-weight-bold mr-2">Hapus</a>
+                            <a href="#" data-id={{ $patient->id }} class="btn btn-light btn-text-danger btn-hover-text-danger font-weight-bold mr-2 delete-patient"  data-toggle="modal" data-target="#confirmDeletePatient" >Hapus</a>
                         </td>
                     </tr>
                 @endforeach
@@ -41,4 +41,28 @@
     <div class="pagination-container d-flex justify-content-end mt-10">
         {{ $patients->links('components.pagination') }}
     </div>
+
+    <div class="modal fade" id="confirmDeletePatient" tabindex="-1" role="dialog" aria-labelledby="confirm" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none;" >
+                    <h5 class="modal-title">Pemberitahuan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body py-3" style="border: none;" >
+                    <p class="m-0 font-weight-normal font-size-h6" >yakin ingin hapus data ?</p>
+                </div>
+                <div class="modal-footer " style="border: none;">
+                    <button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
+                    <button type="button" onclick="handleDeletePatient()" class="btn btn-danger ">Ya, Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form action="" class="delete-patient-form" method="post">
+        @csrf
+    </form>
 </div>

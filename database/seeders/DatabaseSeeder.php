@@ -22,28 +22,29 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         User::create([
-            'name' => 'Rahmat Riyadi Syam',
-            'email' => 'rahmatriyadi171102@gmail.com',
+            'name' => 'Rahmat',
+            'email' => 'admin@gmail.com',
             'role' => 'admin',
             'password' => bcrypt('password'), // password
         ]);
 
         User::create([
             'name' => 'kaka wiwi',
-            'email' => 'kakawiwi@gmail.com',
+            'email' => 'superadmin@gmail.com',
             'role' => 'superadmin',
             'password' => bcrypt('password'), // password
         ]);
 
-        // Patients::create([
-        //     'name' => 'Daeng Sumbul',
-        //     'id_patient' => 'A-213',
-        //     'nik' => '60200120116',
-        //     'phone' => '087817020249',
-        //     'address' => 'Jln. Amirullah No 13',
-        //     'gender' => 'Laki - Laki',
-        //     'note' => 'catatan',
-        // ]);
+        Patients::factory(20)->create();
+
+        Patients::create([
+            'name' => 'Daeng aso',
+            'id_patient' => 'A-213',
+            'nik' => '60200118064',
+            'phone' => '087817020249',
+            'address' => 'Jln. Amirullah No 13',
+            'gender' => 'Laki - Laki',
+        ]);
 
         // Patients::create([
         //     'name' => 'Andi Becce',

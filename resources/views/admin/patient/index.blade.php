@@ -54,3 +54,20 @@
 </div>
     
 @endsection
+
+@push('script')
+
+<script>
+
+    const handleDeletePatient = () => {
+
+        const id = document.querySelector('.delete-patient').getAttribute('data-id')
+        const form = document.querySelector('.delete-patient-form')
+        form.action = `/admin/patient/delete/${id}`
+        form.submit()
+
+    }
+
+</script>
+    
+@endpush

@@ -1,26 +1,27 @@
-<div class="modal fade" id="diseaseModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title text-white" id="diseaseModalTitle">Tambah Riwayat Penyakit</h5>
+                <h5 class="modal-title text-white" id="noteModalTitle">Tambah Catatan</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i aria-hidden="true" class="flaticon2-cross text-warning"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="disease-form" action="/admin/patient/create/disease-history/{{ $patients->id }}" method="post">
+                <form class="note-form" action="/admin/patient/create/note/{{ $patients->id }}" method="post">
 
                     @csrf
 
                     <input type="hidden" name="patients_id" value="{{ $patients->id }}" >
 
                     <div class="form-group">
-                        <label>Nama Penyakit</label>
-                        <input type="text" name="disease" class="form-control form-control-solid" required/>
+                        <label>Tanggal</label>
+                        <input type="date" name="date" class="form-control form-control-solid" required/>
                     </div>
+
                     <div class="form-group">
                         <label for="exampleTextarea">Catatan</label>
-                        <textarea name="notes" class="form-control form-control-solid" required rows="3"></textarea>
+                        <textarea name="note" class="form-control form-control-solid" required rows="3"></textarea>
                     </div>
 
                     <div class="d-flex">

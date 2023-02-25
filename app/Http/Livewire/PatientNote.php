@@ -4,14 +4,15 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class DiseaseTable extends Component
+class PatientNote extends Component
 {
+
     protected $listeners = ['refresh' => '$refresh'];
 
-    public $diseases;
+    public $patients;
 
     public function render()
     {
-        return view('livewire.disease-table');
+        return view('livewire.patient-note');
     }
 }

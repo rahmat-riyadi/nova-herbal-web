@@ -1,10 +1,11 @@
-<div class="table-responsive" style="max-height: 350px;" >
+<div class="table-responsive" style="max-height: 450px;" >
 
     @if (count($histories) > 0)
     <table class="table table-head-custom table-vertical-center" id="kt_advance_table_widget_2">
         <thead>
             <tr class="text-uppercase">
                 <th class="pl-0" style="min-width: 150px">Tanggal Datang</th>
+                <th class="pl-0" style="min-width: 150px">Waktu Datang</th>
                 <th style="min-width: 210px">Nama Obat</th>
                 <th style="min-width: 150px">Warna Capsul</th>
                 <th style="min-width: 150px">Nominal Satuan</th>
@@ -18,6 +19,11 @@
                 <td class="pl-0">
                     <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg">
                         {{ Carbon\Carbon::parse($history->coming_time)->format('d-m-Y') }}
+                    </a>
+                </td>
+                <td class="pl-0">
+                    <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg">
+                        {{ Carbon\Carbon::parse($history->created_at)->format('H:i:s') }}
                     </a>
                 </td>
                 <td>

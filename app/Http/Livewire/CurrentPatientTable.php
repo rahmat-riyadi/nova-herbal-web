@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\PatientEvent;
 use App\Models\History;
 use App\Models\Patients;
 use Carbon\Carbon;
@@ -14,14 +15,13 @@ class CurrentPatientTable extends Component
     
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
-    protected $listeners = ['refreshCurrentPatient' => '$refresh', 'changeStatus'];
+    protected $listeners = ['refresh' => '$refresh', 'changeStatus'];
     
     public function render()
     {
         return view('livewire.current-patient-table',[
             'patients' => History::join('patients', 'patients.id', '=', 'histories.patients_id')
                         ->where('histories.coming_time', '>=', Carbon::today())
-                        ->where('histories.coming_time', '!>', Carbon::today())
                         ->where('histories.patients_id', '!=', null)
                         ->orderBy('histories.coming_time', 'DESC')
                         ->orderBy('histories.status', 'ASC')
@@ -36,7 +36,10 @@ class CurrentPatientTable extends Component
         } catch (\Exception $e){
             dd($e);
         }
-        $this->emit('refreshCurrentPatient');        
+
+        $this->emit('refreshCurrentPatient');
+        $this->emitTo('history-table', 'refreshHistoryTable');
+        event(new PatientEvent());
 
     }
 

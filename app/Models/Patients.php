@@ -25,5 +25,9 @@ class Patients extends Model
         return $this->hasMany(LabResults::class);
     }
 
+    public function note(){
+        return $this->hasMany(Note::class);
+    }
+
 }
 

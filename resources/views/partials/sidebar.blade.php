@@ -13,7 +13,7 @@
         <!--begin::Nav-->
         <ul class="nav flex-column">
             <!--begin::Item-->
-            <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Latest Projects">
+            <li class="nav-item mb-5" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Dashboard">
                 <a href="/admin" class="nav-link btn btn-icon btn-clean btn-text-white btn-lg @if(Route::current()->getName() == 'dashboard') active @endif">
                     {{-- <i class="flaticon2-protection icon-lg"></i> --}}
                     <img width="30px" src="{{ asset('assets/icons/dashboard.svg') }}" alt="">

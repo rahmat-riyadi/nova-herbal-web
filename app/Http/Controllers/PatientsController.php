@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PatientAddedEvent;
+use App\Events\PatientEvent;
 use App\Models\Disease;
 use App\Models\History;
 use App\Models\LabResults;
+use App\Models\Note;
 use App\Models\Patients;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -43,7 +46,22 @@ class PatientsController extends Controller
         
         try {
             Patients::create($request->all());
+            event(new PatientAddedEvent());
             $msg = 'Patient Berhasil Ditambah';
+        } catch (\Exception $e){
+            $msg = $e->getMessage();
+        }
+
+        return redirect('/admin/patient')->with('message', $msg);
+
+    }
+
+    public function delete(Patients $patients) {
+
+        try {
+            Patients::destroy($patients->id);
+            event(new PatientAddedEvent());
+            $msg = 'Patient Berhasil dihapus';
         } catch (\Exception $e){
             $msg = $e->getMessage();
         }
@@ -58,6 +76,7 @@ class PatientsController extends Controller
 
             History::create($request->all());
             $msg = 'Obat Berhasil Ditambah';
+            event(new PatientEvent());
         } catch (\Exception $e){
             $msg = $e->getMessage();
         }
@@ -70,6 +89,7 @@ class PatientsController extends Controller
         try {
             History::find($history->id)->update($request->all());
             $msg = 'Obat Berhasil Diubah';
+            event(new PatientEvent());
         } catch (\Exception $e){
             $msg = $e->getMessage();
         }
@@ -83,6 +103,7 @@ class PatientsController extends Controller
         try {
 
             History::destroy($history->id);
+            event(new PatientEvent());
             $msg = 'Obat Berhasil Dihapus';
         } catch (\Exception $e){
             $msg = $e->getMessage();
@@ -97,6 +118,7 @@ class PatientsController extends Controller
         try {
             Disease::create($request->all());
             $msg = 'Riawayat Penyakit Berhasil Ditambah';
+            event(new PatientEvent());
         } catch (\Exception $e){
             $msg = $e->getMessage();
         }
@@ -109,6 +131,7 @@ class PatientsController extends Controller
         try {
             Disease::find($disease->id)->update($request->all());
             $msg = 'Riawayat Penyakit Berhasil Diubah';
+            event(new PatientEvent());
         } catch (\Exception $e){
             $msg = $e->getMessage();
         }
@@ -122,6 +145,7 @@ class PatientsController extends Controller
         try {
             Disease::destroy($disease->id);
             $msg = 'Riwayat Penyakit Berhasil Dihapus';
+            event(new PatientEvent());
         } catch (\Exception $e){
             $msg = $e->getMessage();
         }
@@ -139,6 +163,7 @@ class PatientsController extends Controller
                 'patients_id' => $patients->id,
                 'image' => $img
             ]);
+            event(new PatientEvent());
             $msg = 'Foto Berhasil Ditambah';
         } catch (\Exception $e){
             $msg = $e->getMessage();
@@ -155,6 +180,7 @@ class PatientsController extends Controller
 
         try {
             LabResults::find($labResults->id)->update(['image' => $img]);
+            event(new PatientEvent());
             $msg = 'Foto Berhasil Diubah';
         } catch (\Exception $e){
             $msg = $e->getMessage();
@@ -169,12 +195,55 @@ class PatientsController extends Controller
         try {
             Storage::delete($labResults->image);
             LabResults::destroy($labResults->id);
+            event(new PatientEvent());
             $msg = 'Hasil Laboratorium Berhasil Dihapus';
         } catch (\Exception $e){
             $msg = $e->getMessage();
         }
 
         return redirect('/admin/patient/show/'. $patients->id)->with('labMessage', $msg);
+
+    }
+
+    public function createNote(Request $request, Patients $patients){
+
+        try {
+            Note::create($request->all());
+            $msg = 'Catatan Berhasil Ditambah';
+            event(new PatientEvent());
+        } catch (\Exception $e){
+            $msg = $e->getMessage();
+        }
+
+        return redirect('/admin/patient/show/'. $patients->id)->with('noteMessage', $msg);        
+
+    }
+
+    public function updateNote(Request $request, Patients $patients, Note $note){
+
+        try {
+            Note::find($note->id)->update($request->all());
+            $msg = 'Catatan Berhasil Diubah';
+            event(new PatientEvent());
+        } catch (\Exception $e){
+            $msg = $e->getMessage();
+        }
+
+        return redirect('/admin/patient/show/'. $patients->id)->with('noteMessage', $msg);        
+
+    }
+
+    public function deleteNote(Patients $patients, Note $note){
+
+        try {
+            Note::destroy($note->id);
+            $msg = 'Catatan Berhasil Dihapus';
+            event(new PatientEvent());
+        } catch (\Exception $e){
+            $msg = $e->getMessage();
+        }
+
+        return redirect('/admin/patient/show/'. $patients->id)->with('noteMessage', $msg);      
 
     }
 

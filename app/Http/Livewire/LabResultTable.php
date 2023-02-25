@@ -7,6 +7,8 @@ use Livewire\Component;
 class LabResultTable extends Component
 {
 
+    protected $listeners = ['refresh' => '$refresh'];
+
     public $patients;
 
     public function render()
