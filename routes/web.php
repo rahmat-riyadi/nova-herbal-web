@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PatientsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
@@ -37,20 +38,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
             Route::get('/create', 'create');
             Route::get('/show/{user}','show');
             Route::post('/','store')->name('storeAdmin');
+            Route::post('/update/{user}','update');
+            Route::delete('/delete/{user}','destroy');
         });
     });
-    
+
     Route::group(['prefix' => 'patient'], function(){
         Route::controller(PatientsController::class)->group(function(){
             Route::get('/', 'index')->name('patient');
             Route::get('/create', 'create')->name('createPatient');
             Route::get('/show/{patients}', 'show');
+            Route::get('/edit/{patients}', 'edit');
             Route::post('/', 'store')->name('storePatient');
-            Route::post('/delete/{patients}', 'delete');
+            Route::get('/delete/{patients}', 'delete');
+            Route::post('/update/{patients}', 'update');
             
             Route::post('/create/medicine/{patients}', 'createMedicine');
             Route::post('/update/medicine/{patients}/{history}', 'updateMedicine');
             Route::post('/delete/medicine/{patients}/{history}', 'deleteMedicine');
+
+            Route::get('/medicine/{patients}', 'showAllMedicine');
 
             Route::post('/create/lab-result/{patients}', 'storeLabPhoto');
             Route::post('/update/lab-result/{patients}/{labResults}', 'updateLabPhoto');
@@ -64,6 +71,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
             Route::post('/update/note/{patients}/{note}', 'updateNote');
             Route::post('/delete/note/{patients}/{note}', 'deleteNote');
 
+        });
+    });
+
+    Route::group(['prefix' => 'medicine'], function(){
+        Route::controller(MedicineController::class)->group(function(){
+            Route::get('/', 'index')->name('medicine');
+            Route::get('/create', 'create');
+            Route::get('/show/{medicine}', 'show');
+            Route::post('/', 'store')->name('storeMedicine');
+            Route::post('/update/{medicine}', 'update');
+            Route::delete('/delete/{medicine}', 'delete');
         });
     });
 });

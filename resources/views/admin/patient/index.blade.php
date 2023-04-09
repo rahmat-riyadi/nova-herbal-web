@@ -9,17 +9,7 @@
             <h3 class="card-label">Daftar Pasien</h3>
 
             @if (session()->has('message'))
-            <div class="alert alert-custom alert-notice alert-light-primary fade show" role="alert" style="background-color: rgba(0, 120, 93, 0.1);" >
-                <div class="alert-text">{{ session('message') }}</div>
-                <div class="alert-close">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"><i class="ki ki-close"></i></span>
-                    </button>
-                </div>
-            </div>
-            {{-- <script>
-                Livewire.emit('refreshHistoryTable')
-            </script> --}}
+                @include('components.alert')
             @endif
 
             <ul class="nav nav-tabs nav-bold nav-tabs-line mb-2">

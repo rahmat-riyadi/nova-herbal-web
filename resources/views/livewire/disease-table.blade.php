@@ -31,7 +31,7 @@
                         data-target="#diseaseModal" 
                         class="btn btn-sm btn-light btn-icon mr-2 edit-disease-btn" 
                         title="Edit details"
-                        data-patient-id="{{ $disease->patients_id }}"
+                        data-patient-id="{{ $patients->id }}"
                         data-disease-id="{{ $disease->id }}"
                         data-disease-name = "{{ $disease->disease }}"
                         data-disease-note = "{{ $disease->notes }}"
@@ -47,7 +47,14 @@
                             </svg>
                         </span>
                     </a>
-                    <a href="javascript:;" class="btn btn-sm btn-light btn-icon delete-disease-btn" title="Delete" data-patient-id="{{ $disease->patients_id }}" data-disease-id="{{ $disease->id }}" data-toggle="modal" data-target="#confirmDeleteDisease" >
+                    <button 
+                        onclick="handleDeleteDisase(this)"
+                        class="btn btn-sm btn-light btn-icon delete-disease-btn" 
+                        title="Delete" 
+                        data-href="/admin/patient/delete/disease-history/{{ $patients->id }}/{{ $disease->id }}" 
+                        data-toggle="modal" 
+                        data-target="#confirmDeleteDisease" 
+                    >
                         <span class="svg-icon svg-icon-danger svg-icon-md">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -57,7 +64,7 @@
                                 </g>
                             </svg>
                         </span>
-                    </a>
+                    </butt>
                 </td>
             </tr>
             @endforeach
@@ -79,14 +86,15 @@
                 </div>
                 <div class="modal-footer " style="border: none;">
                     <button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
-                    <button type="button" onclick="handleDeleteDisase()" class="btn btn-danger ">Ya, Hapus</button>
+                    <form action="" class="delete-disease-form d-inline" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger ">Ya, Hapus</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <form action="" class="delete-disease-form" method="post">
-        @csrf
-    </form>
+    
 
 </div>

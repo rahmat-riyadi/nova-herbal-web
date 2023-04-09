@@ -2,9 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Events\PatientEvent;
+use App\Events\MedicineDoneEvent;
 use App\Models\History;
-use App\Models\Patients;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -39,7 +38,7 @@ class CurrentPatientTable extends Component
 
         $this->emit('refreshCurrentPatient');
         $this->emitTo('history-table', 'refreshHistoryTable');
-        event(new PatientEvent());
+        event(new MedicineDoneEvent());
 
     }
 

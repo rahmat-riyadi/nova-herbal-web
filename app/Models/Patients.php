@@ -11,15 +11,15 @@ class Patients extends Model
 
     protected $guarded = ['id'];
 
-    public $with = ['history', 'labResults', 'disease'];
+    public $with = ['labResults'];
 
-    public function history(){
-        return $this->hasMany(History::class);
-    }
+    // public function history(){
+    //     return $this->hasMany(History::class);
+    // }
 
-    public function disease(){
-        return $this->hasMany(Disease::class);
-    }
+    // public function disease(){
+    //     return $this->hasMany(Disease::class);
+    // }
 
     public function labResults(){
         return $this->hasMany(LabResults::class);

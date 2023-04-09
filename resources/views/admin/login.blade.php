@@ -29,14 +29,13 @@
 			<!--begin::Login-->
 			<div class="login login-2 login-signin-on d-flex flex-column flex-lg-row flex-row-fluid bg-white" id="kt_login">
                 <!--begin::Content-->
-				<div class="order-1 order-lg-1 bg-primary bgi-no-repeat flex-column-auto flex-lg-row-fluid d-flex flex-column p-7" style="background-image: url({{ asset('assets/icons/login-bg.png') }}); background-position: bottom center; background-size: 100%;">
+				<div class="order-1 order-lg-1 bg-primary bgi-no-repeat flex-column-auto flex-lg-row-fluid d-flex flex-column p-7" style="background-image: url({{ asset('assets/img/login.svg') }}); background-position: bottom center; background-size: 80%;">
 					<!--begin::Content body-->
 					<div class="d-flex flex-column flex-lg-center mt-10">
 						<div class="d-flex flex-column align-items-center justify-content-center">
-                            <img src="{{ asset('assets/icons/rounded-logo.svg') }}" width="70px" alt="">
-							<h3 class="display-4 font-weight-bold my-7 text-white" style="color: #FECA37 !important;">Selamat Datang</h3>
-							<p class="font-weight-bold font-size-lg text-white text-center opacity-80">Lorem ipsum, dolor sit amet consectetur adipisicing..
-							<br />Lorem ipsum dolor sit amet.</p>
+                            <img src="{{ asset('assets/img/new_logo_w.svg') }}" width="100px" alt="">
+							<h3 class="display-4 font-weight-bold mb-3 mt-10 text-white" style="color: #FECA37 !important;">Selamat Datang</h3>
+							<p style="font-size: 18px;" class="font-weight-bold font-size-lg text-white text-center opacity-80">Sistem Management Pasien NanoHerbal</p>
 						</div>
 					</div>
 					<!--end::Content body-->

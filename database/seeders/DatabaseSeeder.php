@@ -4,11 +4,13 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Disease;
 use App\Models\History;
 use App\Models\Patients;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,84 +24,59 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         User::create([
-            'name' => 'Rahmat',
+            'name' => 'admin',
             'email' => 'admin@gmail.com',
             'role' => 'admin',
             'password' => bcrypt('password'), // password
         ]);
 
         User::create([
-            'name' => 'kaka wiwi',
+            'name' => 'super admin',
             'email' => 'superadmin@gmail.com',
             'role' => 'superadmin',
             'password' => bcrypt('password'), // password
         ]);
 
-        Patients::factory(20)->create();
+        $patients = DB::connection('old_connect')->table('data_pasien')->get();
+        $medicine = DB::connection('old_connect')->table('list')->get();
 
-        Patients::create([
-            'name' => 'Daeng aso',
-            'id_patient' => 'A-213',
-            'nik' => '60200118064',
-            'phone' => '087817020249',
-            'address' => 'Jln. Amirullah No 13',
-            'gender' => 'Laki - Laki',
-        ]);
 
-        // Patients::create([
-        //     'name' => 'Andi Becce',
-        //     'id_patient' => 'A-2',
-        //     'nik' => '60200120116',
-        //     'phone' => '087817020249',
-        //     'address' => 'Jln. Amirullah No 13',
-        //     'gender' => 'Laki - Laki',
-        //     'note' => 'catatan',
-        // ]);
+        foreach( $patients as $i => $patient ){
+            Patients::create([
+                'name' => $patient->nama,
+                'id_patient' => $i,
+                'phone' => $patient->hp,
+                'job' => $patient->pekerjaan,
+                'age' => $patient->usia,
+                'address' => $patient->alamat
+            ]);
 
-        // Patients::create([
-        //     'name' => 'Andi Becce 3',
-        //     'id_patient' => 'A-2',
-        //     'nik' => '60200120116',
-        //     'phone' => '087817020249',
-        //     'address' => 'Jln. Amirullah No 13',
-        //     'gender' => 'Laki - Laki',
-        //     'note' => 'catatan',
-        // ]);
+            
+            if($patient->diagnosa){
 
-        // Patients::factory(10)->create();
+                Disease::create([
+                    'disease' => $patient->diagnosa,
+                    'notes' => '-',
+                    'name' => $patient->nama
+                ]);
 
-        // History::factory(50)->create();
+            }
 
-        // History::create([
-        //     'patients_id' => '1',
-        //     'coming_time' => Carbon::now(),
-        //     'medicine' => 'obat 1',
-        //     'capsul_color' => 'merah',
-        //     'status' => 'Selesai',
-        //     'price' => 4200000,
-        // ]);
+        }
 
-        // History::create([
-        //     'patients_id' => '2',
-        //     'coming_time' => Carbon::now(),
-        //     'medicine' => 'obat 2',
-        //     'capsul_color' => 'ungu',
-        //     'status' => 'Menunggu',
-        //     'price' => 520000,
-        // ]);
+        
+        foreach( $medicine as $item ){
 
-        // History::create([
-        //     'patients_id' => '3',
-        //     'coming_time' => Carbon::now(),
-        //     'medicine' => 'obat 2',
-        //     'capsul_color' => 'ungu',
-        //     'status' => 'Menunggu',
-        //     'price' => 520000,
-        // ]);
+            History::create([
+                'patients_id' => $item->id,
+                'medicine' => $item->KETERANGAN,
+                'coming_time' => ($item->TGL == '') ? null : $item->TGL,
+                'price' => 0,
+                'status' =>'Selesai',
+                'name' => $item->NAMA
+            ]);
+            
+        }
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

@@ -5,7 +5,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <div>
                     <p class="font-weight-bolder font-size-h2 m-0 ">{{ $total }}</p>
-                    <p class="font-weight-bold m-0 mt-1" >Total Pasien Hari Ini</p>
+                    <p style="font-family: 'Quicksand';" class="font-weight-bold m-0 mt-1" >Total Pasien Hari Ini</p>
                 </div>
                 <img style="height:60px;"  src="{{ asset('assets/icons/profile.svg') }}" alt="">
             </div>

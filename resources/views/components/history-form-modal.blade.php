@@ -25,7 +25,13 @@
                     <div class="d-flex">
                         <div class="form-group flex-grow-1 mr-5">
                             <label>Warna Kapsul</label>
-                            <input type="text" name="capsul_color" required class="form-control form-control-solid"/>
+                            <select name="capsul_color" id="" class="form-control form-control-solid" >
+                                <option value=""></option>
+                                @foreach ($medicine as $item)
+                                    <option {{ !empty($patients) ? $patients['name'] == $item->name ? 'selected' : '' : ''  }}  value="{{ $item->name }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                            {{-- <input type="text" name="capsul_color" required class="form-control form-control-solid"/> --}}
                         </div>
                         <div class="form-group flex-grow-1">
                             <label>Nominal</label>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Events\PatientEvent;
+use App\Events\MedicineDoneEvent;
 use App\Models\History;
 use Livewire\Component;
 
@@ -15,14 +15,16 @@ class HistoryTable extends Component
     ];
 
     public $patients_id;
+    public $patients;
 
     public function render()
     {
         return view('livewire.history-table', [
-            'histories' => History::where('patients_id', $this->patients_id)
+            'histories' => History::where('name', $this->patients_id)
             ->orderBy('created_at', 'DESC')
             ->orderBy('status', 'ASC')
-            ->get()
+            ->get(),
+            'patients' => $this->patients
         ]);
     }
 
@@ -36,7 +38,7 @@ class HistoryTable extends Component
 
         $this->emitTo('current-patient-table', 'refresh');        
         $this->emit('refresh');        
-        event(new PatientEvent());
+        event(new MedicineDoneEvent());
 
     }
 

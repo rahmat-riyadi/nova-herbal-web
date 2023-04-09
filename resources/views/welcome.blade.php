@@ -18,15 +18,7 @@
     <div class="container-fluit position-sticky w-100" id="navbarContainer">
         <nav class="navbar navbar-expand-lg navbar-dark container d-flex justify-content-between">
             <a class="navbar-brand" href="#beranda">
-                <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="22.3823" cy="22.3823" r="22.3823" fill="white" />
-                    <path
-                        d="M19.979 15.0189C20.3582 15.0189 20.6662 15.1453 20.9032 15.3981C21.1402 15.6509 21.2587 15.9669 21.2587 16.346V30.1625C21.2587 30.5733 21.1165 30.9209 20.8321 31.2053C20.5635 31.4739 20.2239 31.6082 19.8131 31.6082C19.6077 31.6082 19.3944 31.5766 19.1732 31.5134C18.9678 31.4344 18.8098 31.3317 18.6992 31.2053L9.38555 19.3795L10.0017 19.0003V30.281C10.0017 30.6602 9.87532 30.9762 9.62254 31.229C9.38555 31.4818 9.06956 31.6082 8.67458 31.6082C8.2954 31.6082 7.98731 31.4818 7.75032 31.229C7.51333 30.9762 7.39484 30.6602 7.39484 30.281V16.4645C7.39484 16.0538 7.52913 15.7141 7.79772 15.4455C8.08211 15.1611 8.42969 15.0189 8.84047 15.0189C9.06166 15.0189 9.29075 15.0663 9.52774 15.1611C9.76473 15.2401 9.93852 15.3665 10.0491 15.5403L19.0784 27.058L18.6755 27.3423V16.346C18.6755 15.9669 18.794 15.6509 19.031 15.3981C19.268 15.1453 19.584 15.0189 19.979 15.0189Z"
-                        fill="#00785D" />
-                    <path
-                        d="M32.2397 15.0189C33.7564 15.0189 34.886 15.3744 35.6286 16.0854C36.3712 16.7963 36.7424 17.847 36.7424 19.2373C36.7424 19.9799 36.5608 20.6355 36.1974 21.2043C35.834 21.7573 35.2968 22.1918 34.5858 22.5078C33.8749 22.808 32.998 22.958 31.9553 22.958L32.0501 21.8916C32.5398 21.8916 33.1007 21.9627 33.7327 22.1049C34.3647 22.2313 34.9729 22.4683 35.5575 22.8158C36.1579 23.1476 36.6477 23.6216 37.0268 24.2378C37.4218 24.8382 37.6193 25.6123 37.6193 26.5603C37.6193 27.603 37.4455 28.4562 37.0979 29.1198C36.7661 29.7833 36.3238 30.2968 35.7708 30.6602C35.2178 31.0236 34.6253 31.2764 33.9934 31.4186C33.3614 31.545 32.7531 31.6082 32.1686 31.6082H26.2675C25.8567 31.6082 25.5092 31.4739 25.2248 31.2053C24.9562 30.9209 24.8219 30.5733 24.8219 30.1625V16.4645C24.8219 16.0538 24.9562 15.7141 25.2248 15.4455C25.5092 15.1611 25.8567 15.0189 26.2675 15.0189H32.2397ZM31.8131 17.8154H27.5947L27.9027 17.4362V21.7257L27.6184 21.5124H31.8842C32.3423 21.5124 32.7531 21.3623 33.1165 21.0621C33.4799 20.7619 33.6616 20.3275 33.6616 19.7587C33.6616 19.0793 33.4878 18.5895 33.1402 18.2894C32.8084 17.9734 32.366 17.8154 31.8131 17.8154ZM32.0027 24.3089H27.6895L27.9027 24.1193V29.1198L27.6658 28.8828H32.1686C32.8953 28.8828 33.472 28.6932 33.8986 28.314C34.3252 27.919 34.5384 27.3344 34.5384 26.5603C34.5384 25.8493 34.3963 25.3358 34.1119 25.0199C33.8275 24.7039 33.4878 24.5064 33.0928 24.4274C32.6978 24.3484 32.3344 24.3089 32.0027 24.3089Z"
-                        fill="#FECA37" />
-                </svg>
+                <img width="70px" src="{{ asset('assets/img/new_logo_w.svg') }}" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +54,7 @@
     </div>
 
     <!-- Produk -->
-    <div class="produk container py-5" id="produk">
+    {{-- <div class="produk container py-5" id="produk">
         <h1 class="text-center mb-5">Produk Kami</h1>
         <div class="row justify-content-between">
             <div class="col-12 col-md-6 col-lg-3 col-sm-6 my-2 d-flex justify-content-center px-2">
@@ -126,35 +118,10 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Testimoni -->
-    {{-- <div class="container-fluid testimoni py-5" id="testimoni">
-        <h1 class="text-center mb-5">Testimoni</h1>
-        <div class="carousel-container">
-            @for ($i = 1; $i < 5; $i++)
-            <div class="caro-item p-5" style="background-image: url({{ asset('assets/icons/testimoni-bg.svg') }});" >
-                <div style="height: 100%;" >
-                    <div class="d-flex flex-lg-row flex-sm-column-reverse" style="height: 100%;" >
-                        <div class="right-side justify-content-between ">
-                            <p class="m-0 font-size-h3 text-white" >
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, eveniet. Rem, repellendus consequuntur. Consequuntur nobis facilis quae amet magnam assumenda molestiae quaerat, corrupti vitae impedit nostrum, tenetur culpa? Est, obcaecati!
-                            </p>
-                            <div class="testi-user">
-                                <p class="font-size-h5 text-white"> <span style="color: #FECA37;" class="font-weight-light" >Syafwan Hanifah</span><br> Kepala Dinas</p>
-                            </div>
-                        </div>
-                        <div class="left-side" >
-                            <div style="background-image: url({{ asset('assets/icons/user.jpg') }});" class="box-img"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endfor
-        </div>
     </div> --}}
 
-    <div class="container testimoni py-5" id="testimoni">
+    <!-- Testimoni -->
+    {{-- <div class="container testimoni py-5" id="testimoni">
         <h1 class="text-center mb-5">Testimoni</h1>
         <div class="row">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -212,9 +179,7 @@
                 </button>
             </div>
         </div>
-    </div>
-
-    
+    </div> --}}
 
     <!-- Kontak -->
     <div class="kontak container-fluit py-5" id="kontak">

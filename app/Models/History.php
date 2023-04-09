@@ -11,8 +11,8 @@ class History extends Model
 
     protected $guarded = ['id'];
 
-    public function patients(){
-        return $this->belongsTo(Patients::class);
-    }
+    // public function patients(){
+    //     return $this->belongsTo(Patients::class);
+    // }
 
 }

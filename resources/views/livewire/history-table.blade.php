@@ -6,9 +6,9 @@
             <tr class="text-uppercase">
                 <th class="pl-0" style="min-width: 150px">Tanggal Datang</th>
                 <th class="pl-0" style="min-width: 150px">Waktu Datang</th>
-                <th style="min-width: 210px">Nama Obat</th>
+                <th style="min-width: 250px">Nama Obat</th>
                 <th style="min-width: 150px">Warna Capsul</th>
-                <th style="min-width: 150px">Nominal Satuan</th>
+                <th style="min-width: 150px">Harga</th>
                 <th style="min-width: 130px">status</th>
                 <th class="pr-0 text-right" style="min-width: 160px">action</th>
             </tr>
@@ -89,7 +89,7 @@
                             </svg>
                         </span>
                     </a>
-                    <a href="javascript:;" class="btn btn-sm btn-light btn-icon delete-history-btn" title="Delete" data-toggle="modal" data-target="#confirmDeleteHistory" data-patient-id="{{ $history->patients_id }}" data-history-id="{{ $history->id }}" >
+                    <button onclick="handleDeleteHistory(this)" class="btn btn-sm btn-light btn-icon delete-history-btn" title="Delete" data-toggle="modal" data-target="#confirmDeleteHistory" data-href="/admin/patient/delete/medicine/{{ $patients->id }}/{{ $history->id }}" >
                         <span class="svg-icon svg-icon-danger svg-icon-md">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -99,13 +99,15 @@
                                 </g>
                             </svg>
                         </span>
-                    </a>
+                    </button>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
     @endif
+
+
 
     <div class="modal fade" id="finishConfirm" tabindex="-1" role="dialog" aria-labelledby="confirm" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
@@ -121,7 +123,7 @@
                 </div>
                 <div class="modal-footer" style="border: none;">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" onclick="handleClickDone()" data-dismiss="modal" class="btn btn-primary">Ya, Selesai</button>
+                    <button type="button" onclick="handleClickDone()" data-dismiss="modal" class="btn btn-primary btn-hover-primary">Ya, Selesai</button>
                 </div>
             </div>
         </div>
@@ -141,14 +143,15 @@
                 </div>
                 <div class="modal-footer " style="border: none;">
                     <button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
-                    <button type="button" onclick="handleDeleteHistory()" class="btn btn-danger ">Ya, Hapus</button>
+                    <form action="" class="delete-history-form d-inline" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger ">Ya, Hapus</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <form action="" class="delete-history-form" method="post">
-        @csrf
-    </form>
+    
 
 </div>

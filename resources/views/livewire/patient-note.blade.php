@@ -14,7 +14,7 @@
             <tr>
                 <td class="pl-0">
                     <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg">
-                        {{ Carbon\Carbon::parse($item->created_at)->format('d-m-Y') }}
+                        {{ Carbon\Carbon::parse($item->date)->format('d-m-Y') }}
                     </a>
                 </td>
                 <td>
@@ -43,7 +43,15 @@
                             </svg>
                         </span>
                     </a>
-                    <a href="javascript:;" class="btn btn-sm btn-light btn-icon delete-note-btn" title="Delete" data-patient-id="{{ $item->patients_id }}" data-note-id="{{ $item->id }}" data-toggle="modal" data-target="#confirmDeleteNote" >
+                    <a 
+                        href="javascript:;" 
+                        class="btn btn-sm btn-light btn-icon delete-note-btn" 
+                        title="Delete" 
+                        data-toggle="modal" 
+                        data-target="#confirmDeleteNote"
+                        data-href="/admin/patient/delete/note/{{ $item->patients_id }}/{{ $item->id }}"
+                        onclick="handleDeleteNote(this)"
+                    >
                         <span class="svg-icon svg-icon-danger svg-icon-md">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -75,14 +83,12 @@
                 </div>
                 <div class="modal-footer " style="border: none;">
                     <button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
-                    <button type="button" onclick="handleDeleteNote()" class="btn btn-danger ">Ya, Hapus</button>
+                    <form action="" class="delete-note-form d-inline" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger ">Ya, Hapus</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
-    <form action="" class="delete-note-form" method="post">
-        @csrf
-    </form>
-
 </div>

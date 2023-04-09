@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('patients_id');
             $table->foreign('patients_id')->references('id')->on('patients');
             $table->string('image');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

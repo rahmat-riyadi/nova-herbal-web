@@ -29,6 +29,7 @@
                         data-toggle="modal" 
                         data-target="#labImageModal" 
                         data-image="{{ asset('storage/'. $labResult->image) }}"
+                        data-note="{{ $labResult->note }}"
                     >
                         <span class="svg-icon svg-icon-dark svg-icon-md"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo4\dist/../src/media/svg/icons\General\Visible.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -48,6 +49,7 @@
                         data-lab-id="{{ $labResult->id }}"
                         data-lab-img="{{ asset('storage/'.$labResult->image) }}"
                         onclick="handleEditLabPhoto(this)"
+                        data-note={{ $labResult->note }}
                     >
                         <span class="svg-icon svg-icon-success svg-icon-md">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -59,7 +61,14 @@
                             </svg>
                         </span>
                     </a>
-                    <a href="javascript:;" class="btn btn-sm btn-light btn-icon delete-lab-btn" title="Delete" data-toggle="modal" data-target="#confirmDeleteLabResutl" data-patient-id="{{ $labResult->patients_id }}" data-lab-id="{{ $labResult->id }}" >
+                    <a 
+                        href="javascript:;" 
+                        class="btn btn-sm btn-light btn-icon delete-lab-btn" 
+                        title="Delete" data-toggle="modal" 
+                        data-target="#confirmDeleteLabResutl" 
+                        onclick="handleDeleteLabPhoto(this)"
+                        data-href="/admin/patient/delete/lab-result/{{ $labResult->patients_id }}/{{ $labResult->id }}"
+                    >
                         <span class="svg-icon svg-icon-danger svg-icon-md">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -91,13 +100,14 @@
                 </div>
                 <div class="modal-footer " style="border: none;">
                     <button type="button" class="btn btn-secondary " data-dismiss="modal">Batal</button>
-                    <button type="button" onclick="handleDeleteLabPhoto()" class="btn btn-danger ">Ya, Hapus</button>
+                    <form action="" class="delete-lab-form d-inline" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger ">Ya, Hapus</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <form action="" class="delete-lab-form" method="post">
-        @csrf
-    </form>
+    
 </div>

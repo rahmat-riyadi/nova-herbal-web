@@ -21,7 +21,7 @@ class PatientsTable extends Component
     public function render()
     {
         return view('livewire.patients-table', [
-            'patients' => Patients::where('name', 'like', '%'. $this->keyword. '%' )
+            'patients' => Patients::latest()->where('name', 'like', '%'. $this->keyword. '%' )
             ->orWhere('id_patient', 'like', '%'. $this->keyword. '%')
             ->orWhere('nik', 'like', '%'. $this->keyword. '%')
             ->paginate(10)

@@ -12,7 +12,7 @@
 
                 <!--begin::Body-->
 
-                <div class="card-header bgi-no-repeat d-flex py-10" style="background-color: #00785D; background-size: auto 100%; background-position: center; background-image: url({{ asset('assets/icons/profil-bg.svg') }});">
+                <div class="card-header bgi-no-repeat d-flex py-10" style="background-color: #00785D; background-size: auto; background-position: center; background-image: url({{ asset('assets/img/profil-bg.png') }});">
                     <div class="text-center m-auto">
                         <div class="symbol symbol-60 symbol-circle symbol-xl-90 mb-3">
                             @php
@@ -22,7 +22,7 @@
                                     $initial .= mb_substr($words[$i] ?? '', 0, 1);
                                 }
                             @endphp
-                            <div class="symbol-label font-size-h1">{{ $initial }}</div>
+                            <div class="symbol-label font-size-h1" style="color: #00785D;" >{{ $initial }}</div>
                         </div>
                         <h4 class="font-weight-bold my-2 text-white">{{ $patients->name }}</h4>
                         <p class="text-white" >234</p>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div class="card-body pt-15">
+                <div class="card-body pt-15" style="padding-left: 15px;padding-right:15px;" >
 
                     <div class="row mb-3">
                         <div class="col">
@@ -90,9 +90,10 @@
             <div class="card card-custom gutter-b">
 
                 <!--begin::Header-->
-                <div class="card-header border-0 py-5">
+                <div class="card-header border-0 py-5 ">
                     <h3 class="card-title d-flex align-items-center">
-                        <span class="card-label font-weight-bolder text-dark">Riwayat Penyakit</span>
+                        <img width="45px" src="{{ asset('assets/icons/virus.svg') }}" alt="">
+                        <span class="card-label font-weight-bolder text-dark ml-6">Riwayat Penyakit</span>
                     </h3>
                     <div class="card-toolbar">
                         <a href="#" data-toggle="modal" data-target="#diseaseModal" class="btn font-weight-bolder font-size-sm" style="background-color: #FECA37;">Tambah</a>
@@ -107,7 +108,7 @@
                     @endif
 
                     <!--begin::Table-->
-                   @livewire('disease-table', ['diseases' => $patients->disease])
+                   @livewire('disease-table', ['name' => $patients->name, 'patients' => $patients])
                     <!--end::Table-->
                 </div>
                 <!--end::Body-->
@@ -119,7 +120,8 @@
                 <!--begin::Header-->
                 <div class="card-header border-0 py-5">
                     <h3 class="card-title d-flex align-items-center">
-                        <span class="card-label font-weight-bolder text-dark">Riwayat Obat</span>
+                        <img width="45px" src="{{ asset('assets/icons/drug.svg') }}" alt="">
+                        <span class="card-label ml-6 font-weight-bolder text-dark">Riwayat Obat</span>
                     </h3>
                     <div class="card-toolbar">
                         <a href="#" data-toggle="modal" data-target="#historyModal" class="btn font-weight-bolder font-size-sm" style="background-color: #FECA37;">Tambah</a>
@@ -133,10 +135,14 @@
                         @include('components.alert', ['message' => 'message'])
                     @endif
                     <!--begin::Table-->
-                    @livewire('history-table', ['patients_id' => $patients->id])
+                    @livewire('history-table', ['patients_id' => $patients->name, 'patients' => $patients])
                     <!--end::Table-->
                 </div>
                 <!--end::Body-->
+                <div class="card-footer align-items-center d-flex justify-content-between py-3">
+                    <span class="font-size-lg" >total Kedatangan : {{ $total }}</span>
+                    <a href="/admin/patient/medicine/{{ $patients->id }}" class="btn btn-outline-secondary font-weight-bold">Selengkapnya</a>
+                </div>
             </div>
             <!--end::Riwayat Obat Table-->
 
@@ -146,7 +152,8 @@
                 <!--begin::Header-->
                 <div class="card-header border-0 py-5">
                     <h3 class="card-title d-flex align-items-center">
-                        <span class="card-label font-weight-bolder text-dark">Hasil Laboratorium</span>
+                        <img width="45px" src="{{ asset('assets/img/mikroskop.svg') }}" alt="">
+                        <span class="card-label ml-6 font-weight-bolder text-dark">Hasil Laboratorium</span>
                     </h3>
                     <div class="card-toolbar">
                         <a href="#" data-toggle="modal" data-target="#labModal" class="btn font-weight-bolder font-size-sm" style="background-color: #FECA37;">Tambah</a>
@@ -172,7 +179,8 @@
                 <!--begin::Header-->
                 <div class="card-header border-0 py-5">
                     <h3 class="card-title d-flex align-items-center">
-                        <span class="card-label font-weight-bolder text-dark">Catatan</span>
+                        <img width="45px" src="{{ asset('assets/img/note.svg') }}" alt="">
+                        <span class="ml-6 card-label font-weight-bolder text-dark">Catatan</span>
                     </h3>
                     <div class="card-toolbar">
                         <a href="#" data-toggle="modal" data-target="#noteModal" class="btn font-weight-bolder font-size-sm" style="background-color: #FECA37;">Tambah</a>
@@ -222,6 +230,8 @@
     const changeButton = document.querySelector('#changeButton')  
     const imgModalPrev = document.querySelector('#imageModalPrev')
 
+    let stream
+
     const deleteDiseaseBtn = document.querySelector('.delete-disease-btn')
 
     changeButton.addEventListener('click', () => {
@@ -234,9 +244,14 @@
 
     const viewImage = (btn) => {
         const img = btn.getAttribute('data-image')        
+        const note = document.createTextNode(btn.getAttribute('data-note'))        
+        const detail = document.querySelector('.lab-detail-note')
+
+
+        detail.appendChild(note)
+
         imgModalPrev.src = img
     }
-
 
     const previewImage = (input) => {
 
@@ -270,21 +285,21 @@
 
         const patientId = btn.getAttribute('data-patient-id')
         const labId = btn.getAttribute('data-lab-id')
+        const note = btn.getAttribute('data-note')
+
+        const labNote = document.querySelector('.lab-note')
+
+        labNote.value = note
+
 
         form.action = `/admin/patient/update/lab-result/${patientId}/${labId}`
 
     }
 
-    const handleDeleteLabPhoto = () => {
-        const labId = document.querySelector('.delete-lab-btn').getAttribute('data-lab-id')
-        const patientId = document.querySelector('.delete-lab-btn').getAttribute('data-patient-id')
+    const handleDeleteLabPhoto = (btn) => {
+        const action = btn.getAttribute('data-href')
         const form = document.querySelector('.delete-lab-form')
-        form.action = `/admin/patient/delete/lab-result/${patientId}/${labId}`
-
-        console.log(labId)
-        console.log(patientId)
-        console.log(form.action)
-        form.submit()
+        form.action = action
     }
 
     const handleEditDisease = (btn) => {
@@ -302,12 +317,10 @@
 
     }
 
-    const handleDeleteDisase = () => {
-        const diseaseId = document.querySelector('.delete-disease-btn').getAttribute('data-disease-id')
-        const patientId = document.querySelector('.delete-disease-btn').getAttribute('data-patient-id')
+    const handleDeleteDisase = (btn) => {
+        const action = btn.getAttribute('data-href')
         const form = document.querySelector('.delete-disease-form')
-        form.action = `/admin/patient/delete/disease-history/${patientId}/${diseaseId}`
-        form.submit()
+        form.action = action
     }
 
     const handleEditHistory = (btn) => {
@@ -321,7 +334,7 @@
 
         document.querySelector("[name='coming_time']").value = comingTime
         document.querySelector("[name='medicine']").value = medicine
-        document.querySelector("[name='capsul_color']").value = capsulColor
+        document.querySelector("[name='capsul_color']").value = capsulColor ?? ''
         document.querySelector("[name='price']").value = price
 
         document.querySelector('#historyModalTitle').innerHTML = 'Ubah Obat'
@@ -330,12 +343,10 @@
 
     }
 
-    const handleDeleteHistory = () => {
-        const diseaseId = document.querySelector('.delete-history-btn').getAttribute('data-history-id')
-        const patientId = document.querySelector('.delete-history-btn').getAttribute('data-patient-id')
+    const handleDeleteHistory = (btn) => {
+        const action = btn.getAttribute('data-href')
         const form = document.querySelector('.delete-history-form')
-        form.action = `/admin/patient/delete/medicine/${patientId}/${diseaseId}`
-        form.submit()
+        form.action = action
     }
 
     const handleEditNote = (btn) => {
@@ -355,17 +366,116 @@
         document.querySelector('.note-form').action = `/admin/patient/update/note/${patientId}/${noteId}`
     }
 
-    const handleDeleteNote = () => {
-        const noteId = document.querySelector('.delete-note-btn').getAttribute('data-note-id')
-        const patientId = document.querySelector('.delete-note-btn').getAttribute('data-patient-id')
+    const handleDeleteNote = (btn) => {
+        const action = btn.getAttribute('data-href')
         const form = document.querySelector('.delete-note-form')
-        form.action = `/admin/patient/delete/note/${patientId}/${noteId}`
-        form.submit()
+        form.action = action
     }
 
     const handleClickDone = () => {
         const id = document.querySelector('#doneBtn').getAttribute('data-id')
         Livewire.emit('changeStatus', id)
+    }
+
+    const onCameraClick = async () => {
+        const video = document.querySelector("#video");
+
+        video.style.display = 'block'
+
+        stream = await navigator.mediaDevices.getUserMedia({ 
+            video: {
+                width: { ideal: 1280 },
+                height: { ideal: 1024 },
+            }, 
+            audio: false 
+        })
+        video.srcObject = stream
+
+        const settings = stream.getVideoTracks()[0].getSettings();
+
+        canvas.width = settings.width
+        canvas.height = settings.height
+    }
+
+    const onCapture = () => {
+
+        const video = document.querySelector("#video")
+        const canvas = document.querySelector('#canvas')
+        const retakeBtn = document.querySelector('#retake')
+        const saveBtn = document.querySelector('#savePic')
+        const captureBtn = document.querySelector('#capturePic')
+
+        captureBtn.classList.add('d-none')
+        retakeBtn.classList.remove('d-none')
+        saveBtn.classList.remove('d-none')
+
+        canvas.getContext('2d').translate(canvas.width, 0)
+        canvas.getContext('2d').scale(-1,1)
+        canvas.getContext('2d').drawImage(video, 0, 0)
+
+        video.style.display = 'none'
+        canvas.style.display = 'block'
+
+        stream.getTracks().forEach( stream => stream.stop() )
+    }
+
+    const onRetake = async () => {
+        const video = document.querySelector("#video");
+        const capture = document.querySelector("#capture");
+        const canvas = document.querySelector('#canvas')
+        const retakeBtn = document.querySelector('#retake')
+        const saveBtn = document.querySelector('#savePic')
+        const captureBtn = document.querySelector('#capturePic')
+
+        retakeBtn.classList.add('d-none')
+        saveBtn.classList.add('d-none')
+        captureBtn.classList.remove('d-none')
+
+        canvas.style.display = 'none'
+        video.style.display = 'block'
+
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+            video: {
+                width: { ideal: 1280 },
+                height: { ideal: 1024 },
+            }, 
+            audio: false 
+        })
+
+        video.srcObject = stream
+    }
+
+    const onSavePic = () => {
+        const canvas = document.querySelector('#canvas')
+        const input = document.querySelector("[name='image']")
+        const form = document.querySelector('.lab-form')
+        const img = document.querySelector('.img-prev')
+        const changeButton = document.querySelector('#changeButton')
+        const captureBtn = document.querySelector('#capturePic')
+        const saveBtn = document.querySelector('#savePic')
+
+        saveBtn.classList.add('d-none')
+        captureBtn.classList.remove('d-none')
+        changeButton.classList.remove('d-none')
+        img.classList.remove('d-none')
+
+        const date = new Date()
+        canvas.toBlob( blob => {
+            const name = "user-capture" + date + Math.random() * 100
+            const file = new File( [ blob ], name.replace(' ', '-'))
+            const dT = new DataTransfer();
+            dT.items.add( file );
+            input.files = dT.files;
+        })
+
+        imgInput.style.display = 'none'
+
+        img.src = canvas.toDataURL('image/png')
+
+    }
+
+    const onCancel = () => {
+        stream.getTracks().forEach( stream => stream.stop())
     }
 
     $('#diseaseModal').on('hide.bs.modal', function(e){
@@ -389,6 +499,10 @@
         document.querySelector('.note-form').action = `/admin/patient/create/note/{{ $patients->id }}`
         document.querySelector("[name='date']").value = ''
         document.querySelector("[name='note']").value = ''
+    })
+
+    $('#camera').on('show.bs.modal', function(e){
+        onCameraClick()
     })
 
 

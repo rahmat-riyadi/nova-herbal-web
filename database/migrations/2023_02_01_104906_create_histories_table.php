@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patients_id');
-            $table->foreign('patients_id')->references('id')->on('patients');
-            $table->dateTime('coming_time');
+            $table->string('name');
+            // $table->foreign('patients_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->dateTime('coming_time')->nullable();
             $table->string('medicine');
-            $table->string('capsul_color');
+            $table->string('capsul_color')->nullable();
             $table->string('price', 10, 10);
             $table->string('status')->default('Menunggu');
             $table->timestamps();

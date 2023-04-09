@@ -4,7 +4,7 @@
             <thead>
                 <tr class="text-uppercase">
                     <th class="pl-0" style="min-width: 30px">No. </th>
-                    <th style="min-width: 30px">Nomor kartu</th>
+                    <th style="min-width: 30px">Nomor ID</th>
                     <th style="min-width: 120px">Nama</th>
                     <th style="min-width: 180px">Waktu Kedatangan</th>
                     <th style="min-width: 150px">Status</th>
@@ -35,16 +35,8 @@
                             </span>
                         </td>
                         <td class="pr-0 text-right">
-                            {{-- @if ($patient->status == 'Menunggu')
-                                <button 
-                                    class="btn btn-light btn-text-primary btn-hover-text-primary font-weight-bold mr-2"
-                                    wire:click="changeStatus({{ $patient->id }})"
-                                >
-                                    Selesai
-                                </button>
-                            @endif --}}
                             <a href="/admin/patient/show/{{ $patient->patients_id }}" class="btn btn-light btn-text-success btn-hover-text-success font-weight-bold mr-2">Lihat</a>
-                            <a href="#" data-id={{ $patient->patients_id }} class="btn btn-light btn-text-danger btn-hover-text-danger font-weight-bold mr-2 delete-patient"  data-toggle="modal" data-target="#confirmDeletePatient" >Hapus</a>
+                            <a href="/admin/patient/edit/{{ $patient->id }}" class="btn btn-light btn-text-warning btn-hover-text-warning font-weight-bold mr-2 ">Edit</a>
                         </td>
                     </tr>
                 @endforeach
