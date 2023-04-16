@@ -17,12 +17,12 @@
             </li>
         @else
             <li class="pagination-item ">
-                <a class="pagination-link icon" href="{{ $paginator->url(1) }}" rel="prev" aria-label="@lang('pagination.previous')">
+                <a class="pagination-link icon" href="javascript:;" wire:click="setPage('page=1}')" rel="prev" aria-label="@lang('pagination.previous')">
                     <img src="{{ asset('assets/icons/double-left.svg') }}" alt="">
                 </a>
             </li>
             <li class="pagination-item">
-                <a class="pagination-link icon" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">
+                <a class="pagination-link icon" href="javascript:;" wire:click="setPage('{{ $paginator->previousPageUrl() }}')" rel="prev" aria-label="@lang('pagination.previous')">
                     <img src="{{ asset('assets/icons/left.svg') }}" alt="">
                 </a>
             </li>
@@ -41,7 +41,7 @@
                     @if ($page == $paginator->currentPage())
                         <li class="pagination-item " aria-current="page"><span class="pagination-link active">{{ $page }}</span></li>
                     @else
-                        <li class="pagination-item"><a class="pagination-link" href="{{ $url }}">{{ $page }}</a></li>
+                        <li class="pagination-item"><a class="pagination-link" wire:click="setPage('{{ $url }}')" href="javascript:;">{{ $page }}</a></li>
                     @endif
                 @endforeach
             @endif
@@ -49,12 +49,12 @@
 
         @if ($paginator->hasMorePages())
             <li class="pagination-item">
-                <a class="pagination-link icon" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">
+                <a class="pagination-link icon" href="javascript:;" wire:click="setPage('{{ $paginator->nextPageUrl() }}')" rel="next" aria-label="@lang('pagination.next')">
                     <img src="{{ asset('assets/icons/right.svg') }}" alt="">
                 </a>
             </li>
             <li class="pagination-item">
-                <a class="pagination-link icon" href="{{ $paginator->url(ceil($paginator->total()/$paginator->perPage())) }}" rel="next" aria-label="@lang('pagination.next')">
+                <a class="pagination-link icon" href="javascript:;" wire:click="setPage('page={{ ceil($paginator->total()/$paginator->perPage()) }}')" rel="next" aria-label="@lang('pagination.next')">
                     <img src="{{ asset('assets/icons/double-right.svg') }}" alt="">
                 </a>
             </li>

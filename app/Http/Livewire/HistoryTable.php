@@ -21,7 +21,7 @@ class HistoryTable extends Component
     {
         return view('livewire.history-table', [
             'histories' => History::where('name', $this->patients_id)
-            ->orderBy('created_at', 'DESC')
+            ->orderBy('coming_time', 'DESC')
             ->orderBy('status', 'ASC')
             ->get(),
             'patients' => $this->patients

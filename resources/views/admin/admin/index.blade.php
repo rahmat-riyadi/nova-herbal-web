@@ -37,9 +37,9 @@
                     <thead>
                         <tr class="text-uppercase">
                             <th class="pl-0" style="min-width: 30px">No. </th>
-                            <th style="min-width: 150px">Nomor kartu</th>
-                            <th style="min-width: 120px">Nama</th>
-                            <th style="min-width: 150px">Nik</th>
+                            <th style="min-width: 150px">Nama</th>
+                            <th style="min-width: 120px">Email</th>
+                            <th style="min-width: 150px">Role</th>
                             <th class="pr-0 text-right" style="min-width: 160px">action</th>
                         </tr>
                     </thead>

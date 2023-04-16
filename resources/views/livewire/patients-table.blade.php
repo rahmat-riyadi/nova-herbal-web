@@ -39,6 +39,7 @@
         </table>
     </div>
     <div class="pagination-container d-flex justify-content-end mt-10">
+        {{-- {{ $patients->links() }} --}}
         {{ $patients->links('components.pagination') }}
     </div>
 
