@@ -44,7 +44,7 @@ class PatientsController extends Controller
     
     public function show(Patients $patients){
         $medicine = Medicine::all();
-        $total = History::where('name', $patients->name)->count();
+        $total = History::where('patients_id', '=',$patients->id)->count();
         return view('admin.'.$this->folderName.'.detail', compact('patients', 'medicine', 'total'));
     }
 
@@ -53,9 +53,9 @@ class PatientsController extends Controller
     }
 
     public function store(Request $request){
-        
+
         try {
-            Patients::create($request->all());
+            Patients::create([...$request->all(), 'id_patient' => Patients::all()->count() + 2]);
             event(new PatientAddedEvent());
             $msg = 'Patient Berhasil Ditambah';
         } catch (\Exception $e){

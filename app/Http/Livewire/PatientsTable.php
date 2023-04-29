@@ -22,6 +22,7 @@ class PatientsTable extends Component
 
     public function render()
     {
+
         return view('livewire.patients-table', [
             'patients' => Patients::latest()
             ->where(function($query){

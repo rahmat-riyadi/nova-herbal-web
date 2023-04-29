@@ -135,7 +135,7 @@
                         @include('components.alert', ['message' => 'message'])
                     @endif
                     <!--begin::Table-->
-                    @livewire('history-table', ['patients_id' => $patients->name, 'patients' => $patients])
+                    @livewire('history-table', ['patients_id' => $patients->id, 'patients' => $patients])
                     <!--end::Table-->
                 </div>
                 <!--end::Body-->
@@ -343,11 +343,7 @@
 
     }
 
-    const handleDeleteHistory = (btn) => {
-        const action = btn.getAttribute('data-href')
-        const form = document.querySelector('.delete-history-form')
-        form.action = action
-    }
+    
 
     const handleEditNote = (btn) => {
 

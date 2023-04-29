@@ -9,13 +9,13 @@ class Patients extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
-    public $with = ['labResults'];
+    public $with = ['labResults', 'history'];
 
-    // public function history(){
-    //     return $this->hasMany(History::class);
-    // }
+    public function history(){
+        return $this->hasMany(History::class);
+    }
 
     // public function disease(){
     //     return $this->hasMany(Disease::class);

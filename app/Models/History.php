@@ -12,7 +12,7 @@ class History extends Model
     protected $guarded = ['id'];
 
     // public function patients(){
-    //     return $this->belongsTo(Patients::class);
+    //     return $this->belongsTo(Patients::class, 'patients_id', 'id');
     // }
 
 }
