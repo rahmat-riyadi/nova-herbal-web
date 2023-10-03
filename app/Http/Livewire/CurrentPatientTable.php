@@ -20,7 +20,7 @@ class CurrentPatientTable extends Component
     {
         return view('livewire.current-patient-table',[
             'patients' => History::join('patients', 'patients.id', '=', 'histories.patients_id')
-                        ->where('histories.coming_time', '>=', Carbon::today())
+                        ->whereDate('histories.coming_time', '=', date('Y-m-d'))
                         ->where('histories.patients_id', '!=', null)
                         ->orderBy('histories.coming_time', 'DESC')
                         ->orderBy('histories.status', 'ASC')

@@ -54,8 +54,10 @@ class PatientsController extends Controller
 
     public function store(Request $request){
 
+        $idPatient = Patients::max('id_patient') + 1;
+
         try {
-            Patients::create([...$request->all(), 'id_patient' => Patients::all()->count() + 2]);
+            Patients::create([...$request->all(), 'id_patient' => $idPatient]);
             event(new PatientAddedEvent());
             $msg = 'Patient Berhasil Ditambah';
         } catch (\Exception $e){

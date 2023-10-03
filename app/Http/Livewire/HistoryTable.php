@@ -22,7 +22,7 @@ class HistoryTable extends Component
 
         return view('livewire.history-table', [
             'histories' => History::where('patients_id', $this->patients_id)
-            ->orderBy('coming_time', 'DESC')
+            ->latest('coming_time')
             ->orderBy('status', 'ASC')
             ->get(),
             'patients' => $this->patients

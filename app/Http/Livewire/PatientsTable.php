@@ -37,8 +37,6 @@ class PatientsTable extends Component
     public function setKeyword($keyword){
         $this->keyword = $keyword;
         $this->emitSelf('$refresh');
-
-        
     }   
 
     public function setPage($url)
